@@ -2872,7 +2872,7 @@ async function pushToFirestore(key, val){
   try {
     const fields={};
     fields[key]=toFsValue(val);
-    await fetch(`https://firestore.googleapis.com/v1/projects/${fbProjectId}/databases/(default)/documents/monster/${fbUserId}?updateMask.fieldPaths=${encodeURIComponent(key)}&key=${fbApiKey}`,{
+    await fetch(`https://firestore.googleapis.com/v1/projects/${fbProjectId}/databases/(default)/documents/monster/${fbUserId}?updateMask.fieldPaths=${encodeURIComponent('`'+key+'`')}&key=${fbApiKey}`,{
       method:'PATCH',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fields})
@@ -2888,7 +2888,7 @@ async function pushDayToFirestore(dk, val){
     const fields={};
     const dayKey='day_'+dk;
     fields[dayKey]=toFsValue(val);
-    await fetch(`https://firestore.googleapis.com/v1/projects/${fbProjectId}/databases/(default)/documents/monster/${fbUserId}?updateMask.fieldPaths=${encodeURIComponent(dayKey)}&key=${fbApiKey}`,{
+    await fetch(`https://firestore.googleapis.com/v1/projects/${fbProjectId}/databases/(default)/documents/monster/${fbUserId}?updateMask.fieldPaths=${encodeURIComponent('`'+dayKey+'`')}&key=${fbApiKey}`,{
       method:'PATCH',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fields})
