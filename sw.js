@@ -22,10 +22,10 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
-// ── FETCH: serve from cache when offline ──
+// ── FETCH: network first, cache as fallback ──
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    fetch(e.request).catch(() => caches.match(e.request))
   );
 });
 
