@@ -1,7 +1,7 @@
 // Monster Routine — Service Worker
 // Handles background notifications + offline caching
 
-const CACHE_NAME = 'monster-routine-v2';
+const CACHE_NAME = 'monster-routine-v3';
 const CACHE_FILES = ['./', './index.html'];
 
 // ── INSTALL: cache the app shell ──
