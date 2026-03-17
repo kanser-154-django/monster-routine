@@ -2928,7 +2928,7 @@ function startFirestoreSync(){
   pullFromFirestore();
   // Then poll every 15 seconds
   if(fbPollTimer) clearInterval(fbPollTimer);
-  fbPollTimer=setInterval(pullFromFirestore, 15000);
+  fbPollTimer=setInterval(pullFromFirestore, 3000);
   const el=document.getElementById('fbSyncStatus');
   if(el) el.textContent='✓ Live sync active — polls every 15 seconds';
 }
