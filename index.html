@@ -1754,7 +1754,7 @@ function toggleCheck(dk,id,el){
   const data=load('day_'+dk,{checks:{},metrics:{},notes:''});
   if(!data.checks)data.checks={};
   data.checks[id]=!data.checks[id];
-  store('day_'+dk,data);
+  storeAndSync('day_'+dk,data);
   el.classList.toggle('checked');
   const checkedCount=dailyHabits.filter(h=>data.checks&&data.checks[h.id]).length;
   renderRings(checkedCount);
@@ -1765,14 +1765,14 @@ function saveMetric(key,val){
   const data=load('day_'+dk,{checks:{},metrics:{},notes:''});
   if(!data.metrics)data.metrics={};
   data.metrics[key]=parseFloat(val)||'';
-  store('day_'+dk,data);
+  storeAndSync('day_'+dk,data);
 }
 
 function saveNotes(val){
   const dk=dateKey(getProgDate());
   const data=load('day_'+dk,{checks:{},metrics:{},notes:''});
   data.notes=val;
-  store('day_'+dk,data);
+  storeAndSync('day_'+dk,data);
 }
 
 function saveDayData(){
@@ -1784,7 +1784,7 @@ function saveDayData(){
   const wv2=document.getElementById('m-water').value; if(wv2)m.water=parseFloat(wv2);
   const wv3=document.getElementById('m-sleep').value; if(wv3)m.sleep=parseFloat(wv3);
   data.metrics=m;
-  store('day_'+dk,data);
+  storeAndSync('day_'+dk,data);
   showToast('Day saved ✓');
 }
 
