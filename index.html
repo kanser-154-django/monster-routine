@@ -2908,12 +2908,9 @@ async function pullFromFirestore(){
     let changed=false;
     Object.entries(doc.fields).forEach(([k,v])=>{
       const jsVal=fromFsValue(v);
-      const current=localStorage.getItem(k);
       const newVal=typeof jsVal==='string'?jsVal:JSON.stringify(jsVal);
-      if(current!==newVal){
-        localStorage.setItem(k,newVal);
-        changed=true;
-      }
+      localStorage.setItem(k,newVal);
+      changed=true;
     });
     if(changed){
       renderAllAfterSync();
