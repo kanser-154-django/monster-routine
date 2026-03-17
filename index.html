@@ -1529,7 +1529,7 @@ function getGymChecked(dayName){
 }
 function saveGymChecked(dayName, arr){
   const key = 'gymDone_' + dayName + '_' + dateKey(today);
-  store(key, arr);
+  storeAndSync(key, arr);
 }
 
 function renderGymHero(){
@@ -2952,6 +2952,8 @@ function storeAndSync(key,val){
   _origStore(key,val);
   if(!fbSyncEnabled) return;
   if(key.startsWith('day_')){ pushDayToFirestore(key.replace('day_',''),val); }
+  else if(key.startsWith('gymDone_')){ pushToFirestore(key,val); }
+  else if(FB_KEYS.includes(key)){ pushToFirestore(key,val); }
   else if(FB_KEYS.includes(key)){ pushToFirestore(key,val); }
 }
 
